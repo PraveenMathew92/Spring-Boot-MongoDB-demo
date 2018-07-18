@@ -30,6 +30,8 @@ bootJar {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
+	compile("org.springframework.boot:spring-boot-starter-data-mongodb")
 	compile('org.springframework.data:spring-data-commons-core:1.0.0.RELEASE')
+	compile('org.springframework.data:spring-data-mongodb:2.0.8.RELEASE')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

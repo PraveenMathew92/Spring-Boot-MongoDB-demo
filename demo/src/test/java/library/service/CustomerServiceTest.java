@@ -34,7 +34,7 @@ public class CustomerServiceTest {
     }
 
     @Test
-    public void getByNameGivesAListUserWhenNameMatches() {
+    public void getByNameGivesAListUserWhenFirstNameMatches() {
         Customer customer = new Customer("ishu", "sing");
 
         when(customerRepository.findByFirstName("ishu")).thenReturn(Collections.singletonList(customer));
@@ -44,4 +44,14 @@ public class CustomerServiceTest {
         assertEquals(1, users.size());
     }
 
+    @Test
+    public void getByNameGivesAListUserWhenLastNameMatches() {
+        Customer customer = new Customer("firstName", "lastName");
+
+        when(customerRepository.findByLastName("lastName")).thenReturn(Collections.singletonList(customer));
+
+        List<Customer> users = customerService.getByName("lastName");
+
+        assertEquals(1, users.size());
+    }
 }

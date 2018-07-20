@@ -5,8 +5,10 @@ import library.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class CustomerService {
@@ -19,6 +21,10 @@ public class CustomerService {
     }
 
     public List<Customer> getByName(String name) {
-        return customerRepository.findByFirstName(name);
+        List<Customer> firstNames = customerRepository.findByFirstName(name);
+        List<Customer> lastNames = customerRepository.findByLastName(name);
+        List<Customer> allNames = Stream.concat(firstNames.stream(), lastNames.stream())
+                .collect(Collectors.toList());
+        return allNames;
     }
 }

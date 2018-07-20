@@ -34,7 +34,7 @@ public class CustomerServiceTest {
     }
 
     @Test
-    public void getByNameGivesEmptyListWithOneUserWenNameMAtches() {
+    public void getByNameGivesAListUserWhenNameMatches() {
         Customer customer = new Customer("ishu", "sing");
 
         when(customerRepository.findByFirstName("ishu")).thenReturn(Collections.singletonList(customer));

@@ -1,4 +1,4 @@
-package hello;
+package library.domain;
 
 import org.springframework.data.annotation.Id;
 

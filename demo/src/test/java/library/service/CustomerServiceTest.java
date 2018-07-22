@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -34,7 +35,7 @@ public class CustomerServiceTest {
     }
 
     @Test
-    public void getByNameGivesAListUserWhenFirstNameMatches() {
+    public void getByNameGivesTheUserWhenFirstNameMatches() {
         Customer customer = new Customer("ishu", "sing");
 
         when(customerRepository.findByFirstName("ishu")).thenReturn(Collections.singletonList(customer));
@@ -45,12 +46,48 @@ public class CustomerServiceTest {
     }
 
     @Test
-    public void getByNameGivesAListUserWhenLastNameMatches() {
+    public void getByNameGivesTheUserWhenLastNameMatches() {
         Customer customer = new Customer("firstName", "lastName");
 
         when(customerRepository.findByLastName("lastName")).thenReturn(Collections.singletonList(customer));
 
         List<Customer> users = customerService.getByName("lastName");
+
+        assertEquals(1, users.size());
+    }
+
+    @Test
+    public void getByNameGivesTheListOfUsersWhenTheNameMatches() {
+        Customer aCustomer = new Customer("Some", "Name");
+        Customer anotherCustomer = new Customer("Name", "Another");
+
+        when(customerRepository.findByFirstName("Name")).thenReturn(Collections.singletonList(anotherCustomer));
+        when(customerRepository.findByLastName("Name")).thenReturn(Collections.singletonList(aCustomer));
+        List<Customer> users = customerService.getByName("Name");
+
+        assertEquals(2, users.size());
+    }
+
+    @Test
+    public void getByDateOfBirthGivesAnEmptyListIfNoUserIsFound() {
+        Customer customer = new Customer("Some", "Name");
+        Date dateOfBirth = new Date(999);
+        customer.setDateOfBirth(dateOfBirth);
+
+        when(customerRepository.findByDateOfBirth(new Date())).thenReturn(Collections.emptyList());
+        List<Customer> users = customerService.getByDateOfBirth(new Date());
+
+        assertEquals(0, users.size());
+    }
+
+    @Test
+    public void getByDateOfBirthGivesTheUsersWithDateOfBirth() {
+        Customer customer = new Customer("firstName", "lastName");
+        Date dateOfBirth = new Date();
+        customer.setDateOfBirth(dateOfBirth);
+
+        when(customerRepository.findByDateOfBirth(dateOfBirth)).thenReturn(Collections.singletonList(customer));
+        List<Customer> users = customerService.getByDateOfBirth(dateOfBirth);
 
         assertEquals(1, users.size());
     }

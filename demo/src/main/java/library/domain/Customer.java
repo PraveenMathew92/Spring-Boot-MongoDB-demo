@@ -2,6 +2,8 @@ package library.domain;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.Date;
+
 
 public class Customer {
 
@@ -10,12 +12,17 @@ public class Customer {
 
     public String firstName;
     public String lastName;
+    public Date dateOfBirth;
 
     public Customer() {}
 
     public Customer(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     @Override

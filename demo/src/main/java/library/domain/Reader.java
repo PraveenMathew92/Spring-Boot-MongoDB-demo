@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import java.util.Date;
 
 
-public class Customer {
+public class Reader {
 
     @Id
     public String id;
@@ -16,7 +16,7 @@ public class Customer {
     public Address address;
     public Date dateOfJoining;
 
-    public Customer(String firstName, String lastName) {
+    public Reader(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -28,7 +28,7 @@ public class Customer {
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%s, firstName='%s', lastName='%s %s %s']",
+                "Reader[id=%s, firstName='%s', lastName='%s']",
                 id, firstName, lastName, address, dateOfBirth);
     }
 

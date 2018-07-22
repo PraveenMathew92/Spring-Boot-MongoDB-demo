@@ -13,8 +13,8 @@ public class Customer {
     public String firstName;
     public String lastName;
     public Date dateOfBirth;
-
-    public Customer() {}
+    public Address address;
+    public Date dateOfJoining;
 
     public Customer(String firstName, String lastName) {
         this.firstName = firstName;
@@ -28,8 +28,8 @@ public class Customer {
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%s, firstName='%s', lastName='%s']",
-                id, firstName, lastName);
+                "Customer[id=%s, firstName='%s', lastName='%s %s %s']",
+                id, firstName, lastName, address, dateOfBirth);
     }
 
 }

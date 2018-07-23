@@ -28,7 +28,7 @@ public class ReaderService {
         return allNames;
     }
 
-    public List<Reader> getByDateOfBirth(Date dateOfbirth){
-        return readerRepository.findByDateOfBirth(dateOfbirth);
+    public List<Reader> getByDOBAfter(Date dateOfBirth){
+        return readerRepository.findByDateOfBirthBetween(new Date(0), dateOfBirth);
     }
 }

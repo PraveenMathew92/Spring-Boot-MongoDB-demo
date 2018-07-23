@@ -10,5 +10,5 @@ public interface ReaderRepository extends MongoRepository<Reader, String> {
 
     public List<Reader> findByFirstName(String firstName);
     public List<Reader> findByLastName(String lastName);
-    public List<Reader> findByDateOfBirth(Date dateOfBirth);
+    public List<Reader> findByDateOfBirthBetween(Date youngestDateOfBirth, Date oldestDateOfBirth);
 }

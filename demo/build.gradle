@@ -27,7 +27,8 @@ targetCompatibility = 1.8
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
-	compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.springframework.boot:spring-boot-starter-web")
 	compile('org.springframework.data:spring-data-commons:2.0.2.RELEASE')
 	compile('org.springframework.data:spring-data-mongodb:2.0.8.RELEASE')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

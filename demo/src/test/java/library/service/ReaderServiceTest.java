@@ -68,17 +68,7 @@ public class ReaderServiceTest {
         assertEquals(2, users.size());
     }
 
-    @Test
-    public void getByDateOfBirthGivesAnEmptyListIfNoUserIsFound() {
-        Reader reader = new Reader("Some", "Name");
-        Date dateOfBirth = new Date(999);
-        reader.setDateOfBirth(dateOfBirth);
 
-        when(readerRepository.findByDateOfBirthBetween(new Date(25), new Date(100))).thenReturn(Collections.emptyList());
-        List<Reader> users = readerService.getByDOBAfter(new Date(100));
-
-        assertEquals(0, users.size());
-    }
 
     @Test
     public void getByDateOfBirthGivesTheUsersWithDateOfBirth() {

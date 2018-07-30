@@ -31,4 +31,15 @@ public class ReaderService {
     public List<Reader> getByDOBAfter(Date dateOfBirth){
         return readerRepository.findByDateOfBirthBetween(new Date(0), dateOfBirth);
     }
+
+    public void updateByName(String name) {
+
+    }
+
+    public void deleteByName(String name) {
+
+    }
+
+    public void addReader(Reader reader) {
+    }
 }

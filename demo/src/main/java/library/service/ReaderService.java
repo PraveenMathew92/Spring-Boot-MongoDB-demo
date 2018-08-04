@@ -32,14 +32,16 @@ public class ReaderService {
         return readerRepository.findByDateOfBirthBetween(new Date(0), dateOfBirth);
     }
 
-    public void updateByName(String name) {
-
+    public void delete(Reader reader) {
+        readerRepository.delete(reader);
     }
 
-    public void deleteByName(String name) {
-
+    public void add(Reader reader) {
+        readerRepository.save(reader);
     }
 
-    public void addReader(Reader reader) {
+    public void update(Reader reader, Date dateOfBirth) {
+        reader.setDateOfBirth(dateOfBirth);
+        readerRepository.save(reader);
     }
 }

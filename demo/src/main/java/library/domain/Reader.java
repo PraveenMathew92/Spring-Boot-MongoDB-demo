@@ -8,28 +8,21 @@ import java.util.Date;
 public class Reader {
 
     @Id
-    public String id;
+    private String id;
 
-    public String firstName;
-    public String lastName;
-    public Date dateOfBirth;
+    private String name;
     public Address address;
-    public Date dateOfJoining;
 
-    public Reader(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public Reader(String name) {
+        this.name= name;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Reader[id=%s, firstName='%s', lastName='%s']",
-                id, firstName, lastName, address, dateOfBirth);
+                "Reader[id=%s, name='%s']",
+                id, name);
     }
 
 }

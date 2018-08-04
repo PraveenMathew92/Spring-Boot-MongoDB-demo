@@ -12,8 +12,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ReaderServiceTest {
@@ -80,5 +80,35 @@ public class ReaderServiceTest {
         List<Reader> users = readerService.getByDOBAfter(dateOfBirth);
 
         assertEquals(1, users.size());
+    }
+
+    @Test
+    public void addUserServiceCallsTheSaveMethodOfTheRepository() {
+        Reader aReader = new Reader("firstName", "lastName");
+
+        readerService.add(aReader);
+
+        verify(readerRepository, times(1)).save(aReader);
+    }
+
+    @Test
+    public void deleteUserServiceCallsTheDeleteMethodOfTheRepository() {
+        Reader aReader = new Reader("firstName", "lastName");
+
+        readerService.delete(aReader);
+
+        verify(readerRepository, times(1)).delete(aReader);
+    }
+
+    @Test
+    public void updateUserServiceCallsTheUpdateMethodOfTheRepository() {
+        Reader aReader = new Reader("firstName", "lastName");
+        Date dateOfBirth = new Date();
+
+        aReader.setDateOfBirth(dateOfBirth); //not a pure function
+
+        readerService.update(aReader, dateOfBirth);
+
+        verify(readerRepository, times(1)).save(aReader);
     }
 }

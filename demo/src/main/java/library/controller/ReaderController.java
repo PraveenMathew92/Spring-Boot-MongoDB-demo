@@ -5,12 +5,12 @@ import library.service.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
 public class ReaderController {
 
-    @Autowired
     private ReaderService readerService;
 
 
@@ -31,16 +31,16 @@ public class ReaderController {
 
     @PostMapping("/user/add")
     public void createReader(@RequestBody Reader reader) {
-        readerService.addReader(reader);
+        readerService.add(reader);
     }
 
-    @PutMapping("/user/update/{name}")
-    public void updateReader(@RequestBody String name) {
-        readerService.updateByName(name);
+    @PutMapping("/user/update")
+    public void updateReader(@RequestBody Reader reader, Date dateOfBirth) {
+        readerService.update(reader, dateOfBirth);
     }
 
-    @DeleteMapping("/user/delete/{name}")
-    public void deleteReader(@RequestBody String name) {
-        readerService.deleteByName(name);
+    @DeleteMapping("/user/delete/")
+    public void deleteReader(@RequestBody Reader reader) {
+        readerService.delete(reader);
     }
 }

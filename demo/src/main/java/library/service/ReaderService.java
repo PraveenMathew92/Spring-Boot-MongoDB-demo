@@ -20,28 +20,11 @@ public class ReaderService {
         this.readerRepository = customerRepository;
     }
 
-    public List<Reader> getByName(String name) {
-        List<Reader> firstNames = readerRepository.findByFirstName(name);
-        List<Reader> lastNames = readerRepository.findByLastName(name);
-        List<Reader> allNames = Stream.concat(firstNames.stream(), lastNames.stream())
-                .collect(Collectors.toList());
-        return allNames;
-    }
-
-    public List<Reader> getByDOBAfter(Date dateOfBirth){
-        return readerRepository.findByDateOfBirthBetween(new Date(0), dateOfBirth);
-    }
-
-    public void delete(Reader reader) {
-        readerRepository.delete(reader);
-    }
-
     public void add(Reader reader) {
         readerRepository.save(reader);
     }
 
-    public void update(Reader reader, Date dateOfBirth) {
-        reader.setDateOfBirth(dateOfBirth);
-        readerRepository.save(reader);
+    public List<Reader> getByDOBAfter(Date dateOfBirth) {
+        return readerRepository.findByDateOfBirthBetween(dateOfBirth, new Date());
     }
 }

@@ -8,4 +8,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ReaderRepository extends MongoRepository<Reader, String> {
     List<Reader> findByName(String firstName);
+    List<Reader> findByDateOfBirthBetween(Date begining, Date end);
 }

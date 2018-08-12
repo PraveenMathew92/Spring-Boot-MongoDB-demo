@@ -4,13 +4,14 @@ import org.springframework.data.annotation.Id;
 
 public class Book {
     @Id
-    private String typeId;
+    private final String isbn;
 
-    private String name;
-    private String author;
+    private final String name;
+    private final String author;
 
-    public Book(String name, String author) {
+    public Book(String name, String author, String isbn) {
         this.name = name;
         this.author = author;
+        this.isbn = isbn;
     }
 }

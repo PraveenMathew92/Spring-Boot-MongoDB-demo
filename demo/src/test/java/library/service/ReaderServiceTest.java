@@ -29,50 +29,17 @@ public class ReaderServiceTest {
     }
 
     @Test
-    public void getByNameGivesEmptyListIfNoUserFound() {
-        List<Reader> users = readerService.getByName("some name");
-        assertEquals(0, users.size());
+    public void addUserServiceCallsTheSaveMethodOfTheRepository() {
+        Reader aReader = new Reader("Jim");
+
+        readerService.add(aReader);
+
+        verify(readerRepository, times(1)).save(aReader);
     }
-
-    @Test
-    public void getByNameGivesTheUserWhenFirstNameMatches() {
-        Reader reader = new Reader("ishu", "sing");
-
-        when(readerRepository.findByFirstName("ishu")).thenReturn(Collections.singletonList(reader));
-
-        List<Reader> users = readerService.getByName("ishu");
-
-        assertEquals(1, users.size());
-    }
-
-    @Test
-    public void getByNameGivesTheUserWhenLastNameMatches() {
-        Reader reader = new Reader("firstName", "lastName");
-
-        when(readerRepository.findByLastName("lastName")).thenReturn(Collections.singletonList(reader));
-
-        List<Reader> users = readerService.getByName("lastName");
-
-        assertEquals(1, users.size());
-    }
-
-    @Test
-    public void getByNameGivesTheListOfUsersWhenTheNameMatches() {
-        Reader aReader = new Reader("Some", "Name");
-        Reader anotherReader = new Reader("Name", "Another");
-
-        when(readerRepository.findByFirstName("Name")).thenReturn(Collections.singletonList(anotherReader));
-        when(readerRepository.findByLastName("Name")).thenReturn(Collections.singletonList(aReader));
-        List<Reader> users = readerService.getByName("Name");
-
-        assertEquals(2, users.size());
-    }
-
-
 
     @Test
     public void getByDateOfBirthGivesTheUsersWithDateOfBirth() {
-        Reader reader = new Reader("firstName", "lastName");
+        Reader reader = new Reader("Jim");
         Date dateOfBirth = new Date();
         reader.setDateOfBirth(dateOfBirth);
 
@@ -82,33 +49,4 @@ public class ReaderServiceTest {
         assertEquals(1, users.size());
     }
 
-    @Test
-    public void addUserServiceCallsTheSaveMethodOfTheRepository() {
-        Reader aReader = new Reader("firstName", "lastName");
-
-        readerService.add(aReader);
-
-        verify(readerRepository, times(1)).save(aReader);
-    }
-
-    @Test
-    public void deleteUserServiceCallsTheDeleteMethodOfTheRepository() {
-        Reader aReader = new Reader("firstName", "lastName");
-
-        readerService.delete(aReader);
-
-        verify(readerRepository, times(1)).delete(aReader);
-    }
-
-    @Test
-    public void updateUserServiceCallsTheUpdateMethodOfTheRepository() {
-        Reader aReader = new Reader("firstName", "lastName");
-        Date dateOfBirth = new Date();
-
-        aReader.setDateOfBirth(dateOfBirth); //not a pure function
-
-        readerService.update(aReader, dateOfBirth);
-
-        verify(readerRepository, times(1)).save(aReader);
-    }
 }

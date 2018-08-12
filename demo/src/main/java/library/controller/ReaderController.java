@@ -24,23 +24,23 @@ public class ReaderController {
         return "Welcome to Library";
     }
 
-    @GetMapping("/user/{name}")
-    public List<Reader> getReader(@PathVariable("name") String name) {
-        return readerService.getByName(name);
-    }
-
-    @PostMapping("/user/add")
-    public void createReader(@RequestBody Reader reader) {
-        readerService.add(reader);
-    }
-
-    @PutMapping("/user/update")
-    public void updateReader(@RequestBody Reader reader, Date dateOfBirth) {
-        readerService.update(reader, dateOfBirth);
-    }
-
-    @DeleteMapping("/user/delete/")
-    public void deleteReader(@RequestBody Reader reader) {
-        readerService.delete(reader);
-    }
+//    @GetMapping("/user/{name}")
+//    public List<Reader> getReader(@PathVariable("name") String name) {
+//        return readerService.getByName(name);
+//    }
+//
+//    @PostMapping("/user/issue")
+//    public void createReader(@RequestBody Reader reader) {
+//        readerService.issue(reader);
+//    }
+//
+//    @PutMapping("/user/update")
+//    public void updateReader(@RequestBody Reader reader, Date dateOfBirth) {
+//        readerService.update(reader, dateOfBirth);
+//    }
+//
+//    @DeleteMapping("/user/delete/")
+//    public void deleteReader(@RequestBody Reader reader) {
+//        readerService.delete(reader);
+//    }
 }

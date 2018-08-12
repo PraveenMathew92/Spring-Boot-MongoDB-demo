@@ -31,7 +31,7 @@ public class BookControllerTest {
 
     @Test
     public void expectAddBookFunctionToBeCalled() {
-        Book book = new Book("Title", "Author");
+        Book book = new Book("isbn", "Title", "Author");
 
         bookController.addBook(book);
 
@@ -40,7 +40,7 @@ public class BookControllerTest {
 
     @Test
     public void expectUpdateBookFunctionToBeCalled() {
-        Book book = new Book("Title", "Author");
+        Book book = new Book("isbn", "Title", "Author");
         bookController.update(book);
 
         verify(bookService, times(1)).update(book);
@@ -48,7 +48,7 @@ public class BookControllerTest {
 
     @Test
     public void expectDeleteookFunctionToBeCalled() {
-        Book book = new Book("Title", "Author");
+        Book book = new Book("isbn", "Title", "Author");
         bookController.delete(book);
 
         verify(bookService, times(1)).delete(book);

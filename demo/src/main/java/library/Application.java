@@ -1,6 +1,8 @@
 package library;
 
+import library.domain.Book;
 import library.domain.Reader;
+import library.repository.BookRepository;
 import library.repository.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,8 +24,8 @@ public class Application implements CommandLineRunner {
 
         repository.deleteAll();
 
-        repository.save(new Reader("Alice", "Smith"));
-        repository.save(new Reader("Bob", "Smith"));
+        repository.save(new Reader("Alice"));
+        repository.save(new Reader("Bob"));
 
         System.out.println("Readers found with findAll():");
         System.out.println("-------------------------------");
@@ -34,13 +36,14 @@ public class Application implements CommandLineRunner {
 
         System.out.println("Reader found with findByFirstName('Alice'):");
         System.out.println("--------------------------------");
-        System.out.println(repository.findByFirstName("Alice"));
+        System.out.println(repository.findByName("Alice"));
 
         System.out.println("Readers found with findByLastName('Smith'):");
         System.out.println("--------------------------------");
-        for (Reader reader : repository.findByLastName("Smith")) {
+        for (Reader reader : repository.findByName("Smith")) {
             System.out.println(reader);
         }
+
 
     }
 

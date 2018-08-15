@@ -1,6 +1,7 @@
 package library.controller;
 
 import library.Exceptions.BookNotFoundException;
+import library.Exceptions.CopyNotFoundException;
 import library.domain.Copy;
 import library.service.CopyService;
 import org.junit.Before;
@@ -30,5 +31,13 @@ public class CopyControllerTest {
         copyController.add(copy);
 
         verify(copyService,times(1)).add(copy);
+    }
+
+    @Test
+    public void expectBorrowServiceToBeCalled() throws CopyNotFoundException {
+        String typeId = "type Id";
+        copyController.borrow(typeId);
+
+        verify(copyService, times(1)).borrow(typeId);
     }
 }

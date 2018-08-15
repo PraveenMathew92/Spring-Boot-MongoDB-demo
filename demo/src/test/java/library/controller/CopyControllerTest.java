@@ -40,4 +40,12 @@ public class CopyControllerTest {
 
         verify(copyService, times(1)).borrow(typeId);
     }
+
+    @Test
+    public void expectGiveBackServiceToBeCalled() {
+        String typeId = "type Id";
+        copyController.giveBack(typeId);
+
+        verify(copyService, times(1)).giveBack(typeId);
+    }
 }

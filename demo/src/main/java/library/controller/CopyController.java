@@ -25,4 +25,9 @@ public class CopyController {
     public void borrow(String typeId) throws CopyNotFoundException {
         copyService.borrow(typeId);
     }
+
+    @PostMapping("copy/return")
+    public void giveBack(String typeId) {
+        copyService.giveBack(typeId);
+    }
 }
